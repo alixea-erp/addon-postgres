@@ -5,4 +5,4 @@
 Uses the official [postgres](https://hub.docker.com/_/postgres) Docker image. The first add-on migrated to `alixea.yaml`
 (the stack config of Alixea, see `docs/devops26/AlixeaInAlixeaPlan.md` in the platform repository).
 
-Versions are tags: `v17.2` is PostgreSQL 17.2. Newer versions are added when something needs them.
+Versions are tags: `v18.3` is PostgreSQL 18.3 (what `main` has), `v17.2` is PostgreSQL 17.2. Newer versions are added when something needs them.

@@ -30,10 +30,14 @@ parameterGroups:
         identifier: POSTGRES_DB
         defaultValue: app
         type: string
+      - name: Database_url
+        identifier: DATABASE_URL
+        defaultValue: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}
+        type: string
 
 connectionStrings:
   - name: Connection URI
-    value: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}
+    value: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}
     description: This connection URI is for components within the deployment and is inaccessible externally.
 
 logs:
@@ -43,7 +47,7 @@ logs:
     
 images:
   - identifier: postgres
-    image: postgres:17.2
+    image: postgres:18.3
     
 storage:
   - identifier: postgres
