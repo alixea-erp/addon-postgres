@@ -1,0 +1,50 @@
+alixeaVersion: v1.0
+type: addon
+name: PostgreSQL
+description: PostgreSQL add-on for Alixea.
+
+parameterGroups:
+  - name: Connection
+    identifier: postgres
+    description: Superuser & connection configuration
+    parameters:
+      - name: Host
+        identifier: POSTGRES_HOST
+        defaultValue: postgres.${DIPLOI_NAMESPACE}
+        type: string
+        readOnly: true
+      - name: Port
+        identifier: POSTGRES_PORT
+        defaultValue: 5432
+        type: integer
+      - name: User
+        identifier: POSTGRES_USER
+        defaultValue: postgres
+        type: string
+        contexts: label=postgres,label=app
+      - name: Password
+        identifier: POSTGRES_PASSWORD
+        defaultValue: postgres
+        type: secret
+      - name: Database
+        identifier: POSTGRES_DB
+        defaultValue: app
+        type: string
+
+connectionStrings:
+  - name: Connection URI
+    value: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB}
+    description: This connection URI is for components within the deployment and is inaccessible externally.
+
+logs:
+  - name: PostgreSQL Log
+    type: log
+    labelSelector: app=postgres
+    
+images:
+  - identifier: postgres
+    image: postgres:17.2
+    
+storage:
+  - identifier: postgres
+    sizeMiB: 6144
