@@ -15,8 +15,10 @@ spec:
     spec:
       containers:
         - name: postgres
-          image: {{ .Values.images.postgres }}
-          imagePullPolicy: Always
+          # The official postgres image with pgvector added, by the pgvector project. NOTE! The -trixie tag: the tag
+          # without it is built on another Debian, and a data folder moved between Debian versions gets collation warnings
+          image: pgvector/pgvector:0.8.7-pg18-trixie
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 5432
               name: postgres

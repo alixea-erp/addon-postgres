@@ -1,7 +1,7 @@
 alixeaVersion: v1.0
 type: addon
 name: PostgreSQL
-description: PostgreSQL add-on for Alixea.
+description: PostgreSQL add-on for Alixea, with the pgvector extension.
 
 parameterGroups:
   - name: Connection
@@ -10,7 +10,7 @@ parameterGroups:
     parameters:
       - name: Host
         identifier: POSTGRES_HOST
-        defaultValue: postgres.${DIPLOI_NAMESPACE}
+        defaultValue: postgres.${ALIXEA_NAMESPACE}
         type: string
         readOnly: true
       - name: Port
@@ -45,9 +45,9 @@ logs:
     type: log
     labelSelector: app=postgres
     
-images:
-  - identifier: postgres
-    image: postgres:18.3
+# NOTE! No image is listed here: the platform watches a listed image and moves every deployment to a new build of its
+# tag by itself. This image is not ours, so the chart names it (.alixea/helm/postgres.yaml) and it changes only with it
+images: []
     
 storage:
   - identifier: postgres
